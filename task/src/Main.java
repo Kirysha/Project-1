@@ -57,16 +57,22 @@ public class Main {
         } else {
             System.out.println("Пользователь не найден");
         }
+        if (("write").equals(args[7])){
+            System.out.println("введите текст");
+
+        }
     }
     public static boolean person(String[] user){
-        boolean result = false;
+        boolean authetication = false;
+        boolean role = false;
         String num = "123";
         if ((num).equals(user[1])) {
             if ((num).equals(user[3])){
-                result = true;
+                authetication = true;
             }
         }
-        
-        return result;
+
+
+        return authetication;
     }
 }
