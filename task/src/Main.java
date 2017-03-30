@@ -1,78 +1,26 @@
 import org.apache.commons.cli.*;
-
 public class Main {
-    public static void main(String[] args) {
-////        Options options = new Options();
-////        options.addOption("login", true, "login user");
-////        options.addOption("pass", false, "pass user");
-////        options.addOption("role", false, "role user");
-////        options.addOption("res", false, "res user");
-////        options.addOption("ds", false, "ds user");
-////        // create the parser
-////        CommandLineParser parser = new DefaultParser();
-////        try {
-////            // parse the command line arguments
-////            CommandLine line = parser.parse(options, args);
-////        } catch (ParseException exp) {
-////            // oops, something went wrong
-////            System.err.println("Parsing failed.  Reason: " + exp.getMessage());
-////        }
-//        // create the command line parser
-//        CommandLineParser parser = new DefaultParser();
-//
-//// create the Options
-//        Options options = new Options();
-//        options.addOption( "l", "login", false, "do not hide entries starting with ." );
-//        options.addOption( "A", "almost-all", false, "do not list implied . and .." );
-//        options.addOption( "b", "escape", false, "print octal escapes for nongraphic "
-//                + "characters" );
-//        options.addOption( "B", "ignore-backups", false, "do not list implied entried "
-//                + "ending with ~");
-//        options.addOption( "c", false, "with -lt: sort by, and show, ctime (time of last "
-//                + "modification of file status information) with "
-//                + "-l:show ctime and sort by name otherwise: sort "
-//                + "by ctime" );
-//        options.addOption( "C", false, "list entries by columns" );
-//
-//        args = new String[]{"--block-size=10"};
-//
-//        try {
-//            // parse the command line arguments
-//            CommandLine line = parser.parse( options, args );
-//
-//            // validate that block-size has been set
-//            if( line.hasOption( "block-size" ) ) {
-//                // print the value of block-size
-//                System.out.println( line.getOptionValue( "block-size" ) );
-//            }
-//        }
-//        catch( ParseException exp ) {
-//            System.out.println( "Unexpected exception:" + exp.getMessage() );
-//        }
-        for (int i = 0; i < args.length; i++) {
-            System.out.println(args[i]);
-        }
-        if(person(args)) {
-            System.out.println("Пользователь аутентефецирован");
-        } else {
-            System.out.println("Пользователь не найден");
-        }
-        if (("write").equals(args[7])){
-            System.out.println("введите текст");
+    public static void main(String[] args) throws ParseException {
+        Options options = new Options();
+        options.addOption("login", true, "login");
+        options.addOption("pass", true, "pass");
+        options.addOption("role", true, "role");
+        options.addOption("res", true, "res");
+        options.addOption("ds", true, "ds");
+        options.addOption("de", true, "de");
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd = parser.parse( options, args);
+        String login = cmd.getOptionValue("login");
+        String pass = cmd.getOptionValue("pass");
+        String role = cmd.getOptionValue("role");
+        String res = cmd.getOptionValue("res");
+        String ds = cmd.getOptionValue("ds");
+        String dt = cmd.getOptionValue("dt");
 
-        }
-    }
-    public static boolean person(String[] user){
-        boolean authetication = false;
-        boolean role = false;
-        String num = "123";
-        if ((num).equals(user[1])) {
-            if ((num).equals(user[3])){
-                authetication = true;
-            }
-        }
-
-
-        return authetication;
+        User u;
+        u = new User();
+        if (u.roby(login,pass,role) == true){
+            System.out.println("Пользователь авторизован");
+        }else System.out.println("нет такого");
     }
 }
